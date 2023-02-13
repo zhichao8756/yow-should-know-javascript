@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input id="input" type="text" />
+<div id="text"></div>
+<script>
+  let input = document.getElementById("input");
+  let text = document.getElementById("text");
+  let data = { value: "" };
+  Object.defineProperty(data, "value", {
+    set: function(val) {
+      text.innerHTML = val;
+      input.value = val;
+    },
+    get: function() {
+      return input.value;
+    }
+  });
+  input.onkeyup = function(e) {
+    data.value = e.target.value;
+  };
+  const object1 = {};
+
+  Object.defineProperty(object1, 'property1', {
+    value: 42,
+    writable: false
+  });
+
+  object1.property1 = 77;
+  // throws an error in strict mode
+
+  console.dir(Object);
+
+  var obj = {__book:'三国演义'}
+
+  Object.defineProperty(obj,'book', {
+    get: function(){
+      return '<<'+this.__book+'>>'
+    },
+    set: function(val){　　　　　//this指向原对象，定义一个属性用来接收赋值
+      this.__book = val
+    }
+  })
+  console.log(obj)
+  console.log(obj.book)
+  obj.book = '水浒传'
+  console.log(obj)
+  console.log(obj.book)
+  // expected output: 42
+  var a = {n: 1};
+  var b = a;
+  a.x = a = {n: 2};
+
+  console.log(a.x )	// 这时 a.x 的值是多少
+  console.log(b.x )	// 这时 b.x 的值是多少
+</script>
+</body>
+</html>

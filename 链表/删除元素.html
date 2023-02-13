@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  /**
+   * @param {ListNode} head
+   * @param {number} val
+   * @return {ListNode}
+   */
+  var removeElements = function(head, val) {
+    const ret = new ListNode(0, head);
+    let cur = ret;
+    while(cur.next) {
+      if(cur.next.val === val) {
+        cur.next =  cur.next.next;
+        continue;
+      }
+      cur = cur.next;
+    }
+    return ret.next;
+  };
+  var arr = [1,2,3,4,2,5,6]
+  console.log(removeElements(arr,2))
+
+</script>
+</body>
+</html>

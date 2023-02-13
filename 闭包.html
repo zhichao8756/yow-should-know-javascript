@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  function init() {
+    var name = "Mozilla"; // name 是一个被 init 创建的局部变量
+    function displayName() { // displayName() 是内部函数，一个闭包
+      // var name = 'Mozilla'
+      alert(name); // 使用了父函数中声明的变量
+    }
+    console.log(name)
+  }
+  console.log(name)
+  init();
+  for (var i = 0; i < 6; i++) {
+    setTimeout(() => {
+      console.log(i);
+    }, 1000);
+  }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  var removeElement = (nums, val) => {
+    let k = 0;
+    for(let i = 0;i < nums.length;i++){
+      if(nums[i] !== val){
+        nums[k++] = nums[i]
+      }
+    }
+    return k;
+  };
+  var nums = [2,4,1,5,2,6,7]
+  removeElement(nums, 2)
+  console.log(nums)
+</script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .test-5::-webkit-scrollbar {
+            /*滚动条整体样式*/
+            width : 10px;  /*高宽分别对应横竖滚动条的尺寸*/
+            height: 1px;
+        }
+        .test-5::-webkit-scrollbar-thumb {
+            /*滚动条里面小方块*/
+            border-radius   : 10px;
+            background-color: skyblue;
+            background-image: -webkit-linear-gradient(
+                    45deg,
+                    rgba(255, 255, 255, 0.2) 25%,
+                    transparent 25%,
+                    transparent 50%,
+                    rgba(255, 255, 255, 0.2) 50%,
+                    rgba(255, 255, 255, 0.2) 75%,
+                    transparent 75%,
+                    transparent
+            );
+        }
+        .test-5::-webkit-scrollbar-track {
+            /*滚动条里面轨道*/
+            box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
+            background   : #ededed;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="test test-5">
+    <div class="scrollbar" style="height: 100px;width: 100px">
+        <p>13123123131221312312312312312312321312312</p>
+        <p>13123123131221312312312312312312321312312</p>
+        <p>13123123131221312312312312312312321312312</p>
+        <p>13123123131221312312312312312312321312312</p>
+        <p>13123123131221312312312312312312321312312</p>
+        <p>13123123131221312312312312312312321312312</p>
+
+    </div>
+</div>
+
+</body>
+
+<script>
+
+  let zzc1 = 1
+  var count = 1;
+  var container = document.getElementById('container');
+
+  function getUserAction() {
+    container.innerHTML = count++;
+  };
+
+  container.onclick = debounce(getUserAction, 1000, false);
+  function debounce(func, wait, immediate) {
+
+    var timeout;
+
+    return function () {
+      var context = this;
+      var args = arguments;
+
+      if (timeout) clearTimeout(timeout);
+      if (immediate) {
+        // 如果已经执行过，不再执行
+        var callNow = !timeout;
+        timeout = setTimeout(function(){
+          timeout = null;
+        }, wait)
+        if (callNow) func.apply(context, args)
+      }
+      else {
+        timeout = setTimeout(function(){
+          func.apply(context, args)
+        }, wait);
+      }
+    }
+  }
+    function test () {
+        console.log('qweeee')
+    }
+    function zzc () {
+      debounce(test, 2000)()
+    }
+  console.log('script start')
+</script>
+</html>

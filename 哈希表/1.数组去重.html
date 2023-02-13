@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  function arrSame(arrSame){
+    var hash = {};
+    var result = [];
+    for(var i = 0, len = arrSame.length;i < len; i++){
+      console.log(hash[arrSame[i]])
+      if(!hash[arrSame[i]]){
+        result.push(arrSame[i]);
+        hash[arrSame[i]] = true;
+      }
+    }
+    return result;
+  }
+  var arr = [2,3,4,5,5,6,7,7]
+  console.log(arrSame(arr))
+</script>
+</body>
+</html>

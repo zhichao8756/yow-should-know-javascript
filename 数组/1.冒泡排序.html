@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  /* 总结:
+  1、外层 for 循环控制循环次数
+  2、内层 for 循环进行两数交换，找每次的最大数，排到最后 */
+    let arr = [2,4,6,5,1]
+    function bubbleSort (arr) {
+      for (let i = 0 ; i < arr.length; i++) {
+        for (let j = 0; j < arr.length - i -1; j++) {
+          if (arr[j] > arr[j+1]) {
+            let tmp = arr[j]
+            arr[j] = arr[j+1]
+            arr[j+1] = tmp
+          }
+        }
+      }
+      return arr
+    }
+    bubbleSort(arr)
+    console.log(arr)
+</script>
+</body>
+</html>

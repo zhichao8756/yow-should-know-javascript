@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  // 一.
+  let obj = { name: "jack", age: "20" };
+  // 给obj设置一个代理
+  let p = new Proxy(obj, {
+    get(target, property) {
+      console.log("我拦截了" + target + "读取" + property);
+      console.log("它的值为" + target[property]);
+      // 定义你要返回的值
+      return target[property];
+    },
+  });
+
+  //读取obj的age属性看看,注意定义代理后得用代理来调用属性或方法
+  console.log(p.age);
+
+  // 二.
+  let obj2 = { name: "jack", age: "20" };
+  let p2 = new Proxy(obj2, {
+    set(target, property, value) {
+      console.log("要设置对象属性？我拦截到了~");
+      console.log("要修改成" + value + "?");
+      console.log("我就不给你改，我改成666");
+      target[property] = 666;
+    },
+    get(target, property) {
+      return target[property];
+    },
+  });
+  //修改obj.age的值为30;
+  p2.age = 30;
+  //读取obj的age属性看看,注意定义代理后得用代理来调用属性或方法
+  console.log(p2.age);
+
+  // 三. 实现数组下标-1
+  var arr = [1,2,3]
+  var arr1 = new Proxy(arr,{
+    get: function(target,prop){
+      if(isNaN(prop)){
+        return target[prop]
+      }else{
+        if(prop<0){
+          let idx = Number(prop)
+          idx = arr.length + idx
+          return arr[idx]
+        }else{
+          return arr[prop]
+        }
+      }
+    }
+  })
+  console.log('arr1[-1]' , arr1[-1]);
+  console.log('arr1[1]', arr[1]);
+</script>
+</body>
+</html>
