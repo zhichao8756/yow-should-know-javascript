@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="droptarget" style="width: 50px;height: 50px; background: red">
+
+</div>
+<div id="test" style="width: 50px;height: 50px; background: blue"  draggable="true"></div>
+<script>
+  let droptarget = document.getElementById("droptarget");
+  let test = document.getElementById("test");
+
+  droptarget.addEventListener("dragover", (event) => {
+    event.preventDefault();
+  });
+  droptarget.addEventListener("dragenter", (event) => {
+    event.preventDefault();
+  });
+  test.addEventListener("dragstart", (event) => {
+    console.log(event)
+    // event.preventDefault();
+  });
+</script>
+</body>
+</html>

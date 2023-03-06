@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>Naisu is 233.</div>
+<input type="text">
+<script>
+  const div = document.querySelector('div');
+
+  const obj = { 'naisu': 233 };
+  const handler = {
+    get: function () {
+      return Reflect.get(...arguments);
+    },
+    set: function (target, property, value, receiver) {
+      console.log(target[property])
+      target[property] = value;
+      div.innerText = `Naisu is ${target[property]}.`; // 值在改变的同时更新视图
+      return true;
+    }
+  };
+  const objProxy = new Proxy(obj, handler);
+
+  const txt = document.querySelector('input[type="text"]');
+  txt.oninput = (el) => {
+    console.log(el.target.value)
+    objProxy.naisu = el.target.value; // 输入事件中改变代理对象属性值
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+/*  const userList = []
+  function emit(val) {
+    console.log(val)
+  }
+  const proxy = new Proxy(userList, {
+    set(target, property, value, receiver){
+      const result = Reflect.set(...arguments)
+      if (result) {
+        // emit(Reflect.get(...arguments))
+        emit(Reflect.get(target, property, receiver));
+      }
+      return result
+    }
+  })
+  console.log(proxy)
+  proxy.push('aaa')*/
+const userList = [];
+function emit(newValue) {
+  console.log(newValue);
+}
+const proxy = new Proxy(userList, {
+  set(target, property, value, receiver) {
+    const result = Reflect.set(...arguments);
+    if (result) {
+      emit(Reflect.get(target, property, receiver));
+    }
+    return result;
+  }
+});
+proxy.push('John');
+// John
+proxy.push('Jacob');
+// Jacob
+</script>
+</body>
+</html>
